@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gender Classification Chatbot</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h2>Gender Classification Chatbot</h2>
+
+    <div class="main-container">
+        <!-- Left side: Upload Image for Gender Prediction -->
+        <div class="container">
+            <h3>Upload Image for Gender Prediction</h3>
+            <input type="file" id="imageInput">
+            <button onclick="uploadImage()">Predict Gender</button>
+            <p id="predictionResult"></p>
+        </div>
+
+        <!-- Right side: Chat with the Bot -->
+        <div class="container">
+            <h3>Chat with the Bot</h3>
+            <div class="chatbox" id="chatbox"></div>
+            <input type="text" id="userInput" placeholder="Type your message...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <script>
+        function uploadImage() {
+            let input = document.getElementById('imageInput').files[0];
+            if (!input) {
+                alert("Please select an image.");
+                return;
+            }
+            
+            let formData = new FormData();
+            formData.append("file", input);
+
+            fetch("/predict", {
+                method: "POST",
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("predictionResult").innerText = "Predicted Gender: " + data.gender;
+            })
+            .catch(error => console.error("Error:", error));
+        }
+
+        function sendMessage() {
+            let userMessage = document.getElementById("userInput").value;
+            if (!userMessage) return;
+
+            let chatbox = document.getElementById("chatbox");
+            chatbox.innerHTML += `<div class='user'><strong>You:</strong> ${userMessage}</div>`;
+
+            fetch("/chat", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ message: userMessage })
+            })
+            .then(response => response.json())
+            .then(data => {
+                chatbox.innerHTML += `<div class='bot'><strong>Bot:</strong> ${data.response}</div>`;
+                chatbox.scrollTop = chatbox.scrollHeight;
+            });
+
+            document.getElementById("userInput").value = "";
+        }
+    </script>
+</body>
+</html>

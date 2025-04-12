@@ -1,0 +1,97 @@
+body {
+    font-family: 'Times New Roman', serif;
+    font-weight: bold;
+    text-align: center;
+    background: linear-gradient(135deg, #ff0090, #0247fe); /* Pink to Blue Gradient */
+    color: rgb(0, 0, 0);
+    height: 100%
+    margin: 0;
+    padding: 0;
+    background-attachment: fixed;
+    font-size: 18px; /* Slightly smaller to fit better */
+}
+
+h2 {
+    font-size: 2.2em; /* Slightly reduced to save space */
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.main-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 90%;
+    margin: auto;
+    gap: 20px; /* Adds space between the sections */
+}
+.container {
+    background: rgb(231, 179, 243);
+    color: black;
+    max-width: 600px; /* Wider container */
+    margin: auto;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.3);
+    margin-bottom: 15px;
+    border: 3px solid #000000; 
+    font-size: 20px; /* Balanced text size */
+}
+
+input, button {
+    margin-top: 10px;
+    padding: 10px;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px; /* Adjusted to fit better */
+}
+
+button {
+    background: #0247fe; /* Blue Button */
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+button:hover {
+    background:#ff0090; /* Turns pink on hover */
+}
+
+.chatbox {
+    border: 3px solid #0247fe; /* Blue border */
+    height: 150px; /* Reduced height so it fits */
+    padding: 10px;
+    margin-top: 10px;
+    background: rgb(231, 179, 243);
+    border-radius: 5px;
+    font-size: 18px;
+    overflow-y: hidden; /* Removes scrollbar */
+}
+
+.user {
+    text-align: right;
+    color: #ff0090; /* Pink user messages */
+    font-size: 18px;
+}
+
+.bot {
+    text-align: left;
+    color: #0247fe; /* Blue bot messages */
+    font-size: 18px;
+}
+
+/* Cursive placeholder text */
+input::placeholder {
+    font-family: 'Brush Script MT', cursive;
+    font-style: italic;
+    color: #0247fe; /* Light blue placeholder text */
+}
+    input[type="text"] {
+        width: 90%; /* Reduce width so it stays within the box */
+        padding: 8px; /* Adjust padding for a smaller input field */
+        font-size: 16px; /* Slightly reduce font size */
+    }
+    
